@@ -1,0 +1,25 @@
+/**
+ * Color representation. 
+ * @typedef ColorSpec
+ * @prop {string} 0xAF10AB - any hex number
+ * @prop {string} white   - 0xFFFFFF
+ * @prop {string} silver  - 0xC0C0C0
+ * @prop {string} gray    - 0x808080
+ * @prop {string} grey    - 0x808080
+ * @prop {string} black   - 0x000000
+ * @prop {string} red     - 0xFF0000
+ * @prop {string} maroon  - 0x800000
+ * @prop {string} yellow  - 0xFFFF00
+ * @prop {string} orange  - 0xFF6600
+ * @prop {string} olive   - 0x808000
+ * @prop {string} lime    - 0x00FF00
+ * @prop {string} green   - 0x008000
+ * @prop {string} aqua    - 0x00FFFF
+ * @prop {string} cyan    - 0x00FFFF
+ * @prop {string} teal    - 0x008080
+ * @prop {string} blue    - 0x0000FF
+ * @prop {string} navy    - 0x000080
+ * @prop {string} fuchsia - 0xFF00FF
+ * @prop {string} magenta - 0xFF00FF
+ * @prop {string} purple  - 0x800080
+ */

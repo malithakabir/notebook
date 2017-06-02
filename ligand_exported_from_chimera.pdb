@@ -1,0 +1,64 @@
+REMARK Selection 'not protein and not water'
+HETATM    1  CAO IRE A9001      14.914 -20.557   9.209  1.00 45.01           C
+HETATM    2  CAL IRE A9001      15.698 -21.839   9.504  1.00 44.30           C
+HETATM    3  OAU IRE A9001      17.004 -21.531  10.024  1.00 46.78           O
+HETATM    4  CAM IRE A9001      16.959 -20.791  11.255  1.00 44.61           C
+HETATM    5  CAP IRE A9001      16.260 -19.450  11.036  1.00 45.49           C
+HETATM    6  NBE IRE A9001      14.864 -19.718  10.489  1.00 42.09           N
+HETATM    7  CAN IRE A9001      14.084 -18.453  10.247  1.00 40.26           C
+HETATM    8  CAJ IRE A9001      12.856 -18.579  11.120  1.00 35.34           C
+HETATM    9  CAK IRE A9001      11.880 -17.427  11.059  1.00 30.52           C
+HETATM   10  OAV IRE A9001      11.296 -17.330   9.750  1.00 26.40           O
+HETATM   11  CBA IRE A9001      10.329 -16.349   9.561  1.00 25.02           C
+HETATM   12  CAZ IRE A9001       9.750 -16.260   8.248  1.00 22.59           C
+HETATM   13  CAH IRE A9001       8.737 -15.278   7.999  1.00 22.44           C
+HETATM   14  OAT IRE A9001      10.237 -17.166   7.322  1.00 24.44           O
+HETATM   15  CAA IRE A9001       9.721 -17.170   5.991  1.00 26.52           C
+HETATM   16  CAI IRE A9001       9.878 -15.461  10.574  1.00 21.69           C
+HETATM   17  C5  IRE A9001       8.872 -14.494  10.318  1.00 20.30           C
+HETATM   18  C4  IRE A9001       8.293 -14.403   9.002  1.00 19.74           C
+HETATM   19  N3  IRE A9001       7.329 -13.506   8.696  1.00 20.24           N
+HETATM   20  C2  IRE A9001       6.922 -12.686   9.683  1.00 19.46           C
+HETATM   21  N1  IRE A9001       7.386 -12.675  10.951  1.00 20.68           N
+HETATM   22  C6  IRE A9001       8.369 -13.582  11.280  1.00 20.51           C
+HETATM   23  NAS IRE A9001       8.879 -13.602  12.613  1.00 19.68           N
+HETATM   24  CAY IRE A9001       8.197 -13.121  13.750  1.00 19.60           C
+HETATM   25  CAG IRE A9001       6.772 -13.255  13.877  1.00 21.56           C
+HETATM   26  CAX IRE A9001       6.099 -12.763  15.008  1.00 22.45           C
+HETATM   27 CL   IRE A9001       4.395 -12.946  15.098  1.00 25.80          Cl
+HETATM   28  CAW IRE A9001       6.835 -12.128  16.038  1.00 21.84           C
+HETATM   29  FAB IRE A9001       6.217 -11.651  17.120  1.00 25.00           F
+HETATM   30  CAD IRE A9001       8.242 -11.985  15.941  1.00 22.44           C
+HETATM   31  CAE IRE A9001       8.921 -12.481  14.797  1.00 21.70           C
+CONECT   20   19   21
+CONECT   18   13   17   19
+CONECT   17   16   18   22
+CONECT   22   17   21   23
+CONECT   15   14
+CONECT   30   28   31
+CONECT   31   24   30
+CONECT   25   24   26
+CONECT   13   12   18
+CONECT   16   11   17
+CONECT    8    7    9
+CONECT    9    8   10
+CONECT    2    1    3
+CONECT    4    3    5
+CONECT    7    6    8
+CONECT    1    2    6
+CONECT    5    4    6
+CONECT   28   26   29   30
+CONECT   26   25   27   28
+CONECT   24   23   25   31
+CONECT   12   11   13   14
+CONECT   11   10   12   16
+CONECT   27   26
+CONECT   29   28
+CONECT   21   20   22
+CONECT   19   18   20
+CONECT   23   22   24
+CONECT    6    1    5    7
+CONECT   14   12   15
+CONECT    3    2    4
+CONECT   10    9   11
+END
