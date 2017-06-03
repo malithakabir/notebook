@@ -49,75 +49,40 @@ bgcolor_3d = '0xeeeeee'
 Chem.WrapLogs()
 
 
-def addMolToView(mol,view,confId=None,drawAs=None):
-    
-    view.removeAllModels()
-    if mol.GetNumAtoms()>=999 or drawAs == 'cartoon':
-        # py3DMol is happier with TER and MASTER records present
-        pdb = Chem.MolToPDBBlock(mol,flavor=0x20|0x10)
-        view.addModel(pdb,'pdb')
-    else:
-        # py3Dmol does not currently support v3k mol files, so
-        # we can only provide those with "smaller" molecules
-        mb = Chem.MolToMolBlock(mol,confId=confId)
-        view.addModel(mb,'sdf')
-    
-    view.setStyle({drawAs:{}})
-    view.zoomTo()
-    return view.show()
+def addMolToView(mol,view,confId=-1,drawAs=None):
+  if mol.GetNumAtoms()>=999 or drawAs == 'cartoon':
+    # py3DMol is happier with TER and MASTER records present
+    pdb = Chem.MolToPDBBlock(mol,flavor=0x20|0x10)
+    view.addModel(pdb,'pdb')
+  else:
+    # py3Dmol does not currently support v3k mol files, so
+    # we can only provide those with "smaller" molecules
+    mb = Chem.MolToMolBlock(mol,confId=confId)
+    view.addModel(mb,'sdf')
+  if drawAs is None:
+    drawAs = drawing_type_3d
+  view.setStyle({drawAs:{}})
 
+def drawMol3D(m,view=None,confId=-1,drawAs=None,bgColor=None,size=None):
+  if bgColor is None:
+    bgColor = bgcolor_3d
+  if size is None:
+    size=molSize_3d
+  if view is None:
+    view = py3Dmol.view(width=size[0],height=size[1])
+  view.removeAllModels()
+  try:
+    iter(m)
+  except TypeError:
+    addMolToView(m,view,confId,drawAs)
+  else:
+    ms = m
+    for m in ms:
+      addMolToView(m,view,confId,drawAs)
 
-"""
-Use: drawMol3D
-
-mol_multi_conf==rdkit Mol object with MULTIPLE conformers
-mol_single_conf==rdkit Mol object with SINGLE conformers
-
-
-MULTIPE CONFORMERS RENDERING
-drawMol3D(mol_multi_conf,view=None,confId=None,drawAs=None,bgColor=None,size=None)
-drawMol3D(mol_multi_conf, view=None, confId=(0,mol_multi_conf.GetNumConformers()-1), drawAs=None, bgColor=None, size=None)
-
-
-SINGLE CONFORMER RENDERING
-drawMol3D(mol_single_conf,view=None,confId=None,drawAs=None,bgColor=None,size=None)
-drawMol3D(mol_multi_conf,view=None,confId=(0),drawAs=None,bgColor=None,size=None)
-
-"""
-
-def drawMol3D(mol,view=None,confId=None,drawAs=None,bgColor=None,size=None):
-    
-    if drawAs is None:
-        drawAs = drawing_type_3d
-    if size is None:
-        size=molSize_3d
-    if view is None:
-        view = py3Dmol.view(width=size[0],height=size[1])
-    
-    if bgColor is None:
-        bgColor = bgcolor_3d
-        
-    view.setBackgroundColor(bgColor)
-    
-    
-    if confId is not None:
-        if type(confId) is not int:
-            # render MULTIPLE (selected) models with scroll
-            res=interact(addMolToView, mol=fixed(mol),view=fixed(view),confId=confId,drawAs=drawAs);
-        else:
-            #render SINGLE model
-            res=addMolToView(mol,view,confId=confId,drawAs=drawAs)
-    else:
-        if mol.GetNumConformers()>1:
-            # render MULTIPLE (all) models with scroll
-            res=interact(addMolToView, mol=fixed(mol), view=fixed(view), confId=(0,mol.GetNumConformers()-1), drawAs=drawAs);
-        else:
-            # render SINGLE model
-            res=addMolToView(mol,view,confId=(0),drawAs=drawAs)
-    
-    return res
-
-
+  view.setBackgroundColor(bgColor)
+  view.zoomTo()
+  return view.show()
 
 def _toJSON(mol):
   """For IPython notebook, renders 3D webGL objects."""
