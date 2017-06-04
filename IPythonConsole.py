@@ -67,20 +67,16 @@ def addMolToView(mol,view,confId=None,drawAs=None):
     return view.show()
 
 def drawMol3D(mol,view=None,confId=None,drawAs=None,bgColor=None,size=None):
-    """
-    Use: drawMol3D
-    
-    mol_multi_conf==rdkit Mol object with MULTIPLE conformers
-    mol_single_conf==rdkit Mol object with SINGLE conformers
-    
+    """Use:
     MULTIPE CONFORMERS RENDERING
     drawMol3D(mol_multi_conf,view=None,confId=None,drawAs=None,bgColor=None,size=None)
     drawMol3D(mol_multi_conf, view=None, confId=(0,mol_multi_conf.GetNumConformers()-1), drawAs=None, bgColor=None, size=None)
-    
     SINGLE CONFORMER RENDERING
     drawMol3D(mol_single_conf,view=None,confId=None,drawAs=None,bgColor=None,size=None)
     drawMol3D(mol_multi_conf,view=None,confId=(0),drawAs=None,bgColor=None,size=None)
-
+    Where,
+    mol_multi_conf==rdkit Mol object with MULTIPLE conformers
+    mol_single_conf==rdkit Mol object with SINGLE conformers
     """
     if drawAs is None:
         drawAs = drawing_type_3d
@@ -111,6 +107,10 @@ def drawMol3D(mol,view=None,confId=None,drawAs=None,bgColor=None,size=None):
             res=addMolToView(mol,view,confId=(0),drawAs=drawAs)
     
     return res
+
+
+
+
 
 
 
