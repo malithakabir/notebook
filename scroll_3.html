@@ -1,0 +1,189 @@
+
+
+<html>
+
+<head>
+<script
+  src="https://code.jquery.com/jquery-1.11.3.min.js"
+  integrity="sha256-7LkWEzqTdpEfELxcZZlS6wAx5Ff13zZ83lYO2/ujj7g="
+  crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.3/jquery-ui.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.3/jquery-ui.css" />
+</head>
+
+<body>
+
+
+<script>
+  $(function(){
+    $( "fieldset" ).controlgroup();
+  });
+</script>
+
+<div class="widget">
+ 
+  <h2>3Dmol.js model hide and show example</h2>
+  <!--<p>After clicking on Radio button, an attempt to drag model from viewer is required to take the effect.</p>-->
+
+  <fieldset id="buttons_ui">
+  
+    <legend>Select conf: </legend>
+	
+	<label for="radio-0">Show all</label>
+    <input type="radio" name="radio-1" id="radio-0">
+	
+    <label for="radio-1">conf_0</label>
+    <input type="radio" name="radio-1" id="radio-1">
+	
+    <label for="radio-2">conf_1</label>
+    <input type="radio" name="radio-1" id="radio-2">
+	
+    <label for="radio-3">conf_2</label>
+    <input type="radio" name="radio-1" id="radio-3">
+	
+	<label for="radio-4">hide model 2</label>
+    <input type="radio" name="radio-1" id="radio-4">
+  </fieldset>
+  
+</div>
+
+<div id="print_selected_radio">initiating</div>
+<div id="3dmolviewer_1"  style="position: relative; width: 320px; height: 240px">
+
+<script>
+$("#radio-0").prop("checked", true)
+
+
+if(typeof $3Dmolpromise === 'undefined') 
+$3Dmolpromise = $.when($.getScript('https://3dmol.csb.pitt.edu/build/3Dmol.js'))
+var viewer_1 = null;
+
+$3Dmolpromise.done(function() {
+		
+		viewer_1 = $3Dmol.createViewer($("#3dmolviewer_1"),{backgroundColor:"black"});
+		
+		viewer_1.addModel('\n     RDKit          3D\n\n 43 45  0  0  0  0  0  0  0  0999 V2000\n    6.9120    0.7055   -1.8006 C   0  0  0  0  0  0  0  0  0  0  0  0\n    6.7947   -0.4182   -0.9398 O   0  0  0  0  0  0  0  0  0  0  0  0\n    5.6902   -0.4586   -0.1121 C   0  0  0  0  0  0  0  0  0  0  0  0\n    5.8539   -0.3667    1.2605 C   0  0  0  0  0  0  0  0  0  0  0  0\n    4.8119   -0.8338    2.0414 C   0  0  0  0  0  0  0  0  0  0  0  0\n    3.5073   -0.9170    1.5688 C   0  0  0  0  0  0  0  0  0  0  0  0\n    2.3081   -0.7351    2.1748 N   0  0  0  0  0  0  0  0  0  0  0  0\n    1.4069   -0.2376    1.3346 C   0  0  0  0  0  0  0  0  0  0  0  0\n    0.0026    0.7960    1.6538 S   0  0  0  0  0  0  0  0  0  0  0  0\n    0.0895    1.1109    3.3278 O   0  0  0  0  0  0  0  0  0  0  0  0\n   -1.3937   -0.3391    1.5528 C   0  0  0  0  0  0  0  0  0  0  0  0\n   -2.0154   -0.2876    0.1969 C   0  0  0  0  0  0  0  0  0  0  0  0\n   -2.3409   -1.4581   -0.4046 N   0  0  0  0  0  0  0  0  0  0  0  0\n   -3.4556   -1.5830   -1.1652 C   0  0  0  0  0  0  0  0  0  0  0  0\n   -4.2088   -0.4777   -1.5383 C   0  0  0  0  0  0  0  0  0  0  0  0\n   -5.1704   -0.5622   -2.6807 C   0  0  0  0  0  0  0  0  0  0  0  0\n   -3.8255    0.7613   -1.0401 C   0  0  0  0  0  0  0  0  0  0  0  0\n   -4.8255    1.7391   -1.0282 O   0  0  0  0  0  0  0  0  0  0  0  0\n   -5.7838    1.6711    0.0232 C   0  0  0  0  0  0  0  0  0  0  0  0\n   -2.8457    0.7984   -0.0546 C   0  0  0  0  0  0  0  0  0  0  0  0\n   -2.2767    2.1335    0.2508 C   0  0  0  0  0  0  0  0  0  0  0  0\n    1.9940   -0.2550    0.1170 N   0  0  0  0  0  0  0  0  0  0  0  0\n    3.3010   -0.5875    0.2375 C   0  0  0  0  0  0  0  0  0  0  0  0\n    4.3948   -0.4823   -0.6127 C   0  0  0  0  0  0  0  0  0  0  0  0\n    6.0056    1.3358   -1.8066 H   0  0  0  0  0  0  0  0  0  0  0  0\n    7.7772    1.3312   -1.4836 H   0  0  0  0  0  0  0  0  0  0  0  0\n    7.0747    0.2984   -2.8276 H   0  0  0  0  0  0  0  0  0  0  0  0\n    6.6899    0.2020    1.6677 H   0  0  0  0  0  0  0  0  0  0  0  0\n    4.9844   -0.7846    3.1182 H   0  0  0  0  0  0  0  0  0  0  0  0\n    2.1052   -0.8669    3.2003 H   0  0  0  0  0  0  0  0  0  0  0  0\n   -2.1738   -0.0615    2.3068 H   0  0  0  0  0  0  0  0  0  0  0  0\n   -1.0916   -1.3683    1.8060 H   0  0  0  0  0  0  0  0  0  0  0  0\n   -3.7481   -2.5563   -1.5546 H   0  0  0  0  0  0  0  0  0  0  0  0\n   -6.1117   -1.0614   -2.4001 H   0  0  0  0  0  0  0  0  0  0  0  0\n   -5.3868    0.4758   -3.0351 H   0  0  0  0  0  0  0  0  0  0  0  0\n   -4.7235   -1.1013   -3.5529 H   0  0  0  0  0  0  0  0  0  0  0  0\n   -6.8194    1.7680   -0.3390 H   0  0  0  0  0  0  0  0  0  0  0  0\n   -5.6065    2.4440    0.7964 H   0  0  0  0  0  0  0  0  0  0  0  0\n   -5.7320    0.6853    0.5510 H   0  0  0  0  0  0  0  0  0  0  0  0\n   -1.2937    2.2026   -0.2806 H   0  0  0  0  0  0  0  0  0  0  0  0\n   -2.2039    2.3469    1.3262 H   0  0  0  0  0  0  0  0  0  0  0  0\n   -2.8870    2.9655   -0.1842 H   0  0  0  0  0  0  0  0  0  0  0  0\n    4.2158   -0.5299   -1.6712 H   0  0  0  0  0  0  0  0  0  0  0  0\n  1  2  1  0\n  2  3  1  0\n  3  4  2  0\n  4  5  1  0\n  5  6  2  0\n  6  7  1  0\n  7  8  1  0\n  9  8  1  6\n  9 10  1  0\n  9 11  1  0\n 11 12  1  0\n 12 13  2  0\n 13 14  1  0\n 14 15  2  0\n 15 16  1  0\n 15 17  1  0\n 17 18  1  0\n 18 19  1  0\n 17 20  2  0\n 20 21  1  0\n  8 22  2  0\n 22 23  1  0\n 23 24  2  0\n 24  3  1  0\n 23  6  1  0\n 20 12  1  0\n  1 25  1  0\n  1 26  1  0\n  1 27  1  0\n  4 28  1  0\n  5 29  1  0\n  7 30  1  0\n 11 31  1  0\n 11 32  1  0\n 14 33  1  0\n 16 34  1  0\n 16 35  1  0\n 16 36  1  0\n 19 37  1  0\n 19 38  1  0\n 19 39  1  0\n 21 40  1  0\n 21 41  1  0\n 21 42  1  0\n 24 43  1  0\nM  CHG  2   9   1  10  -1\nM  END\n','sdf');
+		viewer_1.setStyle({'model': 0},{'stick':{'color':'yellow'}});
+		
+		viewer_1.addModel('\n     RDKit          3D\n\n 43 45  0  0  0  0  0  0  0  0999 V2000\n    6.9642    1.5863   -0.3601 C   0  0  0  0  0  0  0  0  0  0  0  0\n    6.7714    0.2265   -0.7282 O   0  0  0  0  0  0  0  0  0  0  0  0\n    5.6952   -0.4280   -0.1216 C   0  0  0  0  0  0  0  0  0  0  0  0\n    5.8415   -0.8746    1.1859 C   0  0  0  0  0  0  0  0  0  0  0  0\n    4.7908   -0.8354    2.0941 C   0  0  0  0  0  0  0  0  0  0  0  0\n    3.5393   -0.4656    1.6179 C   0  0  0  0  0  0  0  0  0  0  0  0\n    2.3375   -0.4356    2.1964 N   0  0  0  0  0  0  0  0  0  0  0  0\n    1.4141   -0.7609    1.2624 C   0  0  0  0  0  0  0  0  0  0  0  0\n   -0.3061   -0.7934    1.7112 S   0  0  0  0  0  0  0  0  0  0  0  0\n   -0.3761   -2.2188    2.6477 O   0  0  0  0  0  0  0  0  0  0  0  0\n   -1.1711   -1.2106    0.1902 C   0  0  0  0  0  0  0  0  0  0  0  0\n   -2.2826   -0.2417   -0.0650 C   0  0  0  0  0  0  0  0  0  0  0  0\n   -2.3738    0.4119   -1.2498 N   0  0  0  0  0  0  0  0  0  0  0  0\n   -3.3670    1.3087   -1.4647 C   0  0  0  0  0  0  0  0  0  0  0  0\n   -4.6298    1.0468   -0.9470 C   0  0  0  0  0  0  0  0  0  0  0  0\n   -5.6842    2.0939   -1.1216 C   0  0  0  0  0  0  0  0  0  0  0  0\n   -4.6787    0.1202    0.0871 C   0  0  0  0  0  0  0  0  0  0  0  0\n   -5.8802   -0.0597    0.7567 O   0  0  0  0  0  0  0  0  0  0  0  0\n   -6.5510   -1.2912    0.8580 C   0  0  0  0  0  0  0  0  0  0  0  0\n   -3.4831   -0.3359    0.6300 C   0  0  0  0  0  0  0  0  0  0  0  0\n   -3.4323   -0.8725    2.0193 C   0  0  0  0  0  0  0  0  0  0  0  0\n    1.9559   -0.4067    0.0966 N   0  0  0  0  0  0  0  0  0  0  0  0\n    3.3016   -0.3842    0.2514 C   0  0  0  0  0  0  0  0  0  0  0  0\n    4.3923   -0.2825   -0.5734 C   0  0  0  0  0  0  0  0  0  0  0  0\n    7.7557    2.0798   -0.9369 H   0  0  0  0  0  0  0  0  0  0  0  0\n    7.2269    1.6856    0.7207 H   0  0  0  0  0  0  0  0  0  0  0  0\n    5.9656    2.0722   -0.4621 H   0  0  0  0  0  0  0  0  0  0  0  0\n    6.7833   -1.2946    1.4808 H   0  0  0  0  0  0  0  0  0  0  0  0\n    4.9364   -1.1573    3.1204 H   0  0  0  0  0  0  0  0  0  0  0  0\n    2.2025   -0.2047    3.2077 H   0  0  0  0  0  0  0  0  0  0  0  0\n   -0.5070   -1.1936   -0.6824 H   0  0  0  0  0  0  0  0  0  0  0  0\n   -1.6323   -2.2054    0.2323 H   0  0  0  0  0  0  0  0  0  0  0  0\n   -3.2045    2.2347   -2.0201 H   0  0  0  0  0  0  0  0  0  0  0  0\n   -6.1852    2.0139   -2.1110 H   0  0  0  0  0  0  0  0  0  0  0  0\n   -6.4852    1.9346   -0.3580 H   0  0  0  0  0  0  0  0  0  0  0  0\n   -5.2843    3.1068   -0.9269 H   0  0  0  0  0  0  0  0  0  0  0  0\n   -5.9624   -2.1048    0.3655 H   0  0  0  0  0  0  0  0  0  0  0  0\n   -6.6517   -1.6190    1.9237 H   0  0  0  0  0  0  0  0  0  0  0  0\n   -7.5737   -1.2058    0.4381 H   0  0  0  0  0  0  0  0  0  0  0  0\n   -2.7896   -0.2641    2.6847 H   0  0  0  0  0  0  0  0  0  0  0  0\n   -3.1862   -1.9434    2.0120 H   0  0  0  0  0  0  0  0  0  0  0  0\n   -4.4612   -0.7982    2.4546 H   0  0  0  0  0  0  0  0  0  0  0  0\n    4.2437    0.0283   -1.5887 H   0  0  0  0  0  0  0  0  0  0  0  0\n  1  2  1  0\n  2  3  1  0\n  3  4  2  0\n  4  5  1  0\n  5  6  2  0\n  6  7  1  0\n  7  8  1  0\n  9  8  1  1\n  9 10  1  0\n  9 11  1  0\n 11 12  1  0\n 12 13  2  0\n 13 14  1  0\n 14 15  2  0\n 15 16  1  0\n 15 17  1  0\n 17 18  1  0\n 18 19  1  0\n 17 20  2  0\n 20 21  1  0\n  8 22  2  0\n 22 23  1  0\n 23 24  2  0\n 24  3  1  0\n 23  6  1  0\n 20 12  1  0\n  1 25  1  0\n  1 26  1  0\n  1 27  1  0\n  4 28  1  0\n  5 29  1  0\n  7 30  1  0\n 11 31  1  0\n 11 32  1  0\n 14 33  1  0\n 16 34  1  0\n 16 35  1  0\n 16 36  1  0\n 19 37  1  0\n 19 38  1  0\n 19 39  1  0\n 21 40  1  0\n 21 41  1  0\n 21 42  1  0\n 24 43  1  0\nM  CHG  2   9   1  10  -1\nM  END\n','sdf');
+		viewer_1.setStyle({'model': 1},{'stick':{'color':'white'}});
+		
+		viewer_1.addModel('\n     RDKit          3D\n\n 43 45  0  0  0  0  0  0  0  0999 V2000\n    8.0029   -1.1399   -0.4280 C   0  0  0  0  0  0  0  0  0  0  0  0\n    6.6948   -1.1329   -0.9306 O   0  0  0  0  0  0  0  0  0  0  0  0\n    5.6540   -0.7024   -0.1290 C   0  0  0  0  0  0  0  0  0  0  0  0\n    5.8473   -0.5496    1.2290 C   0  0  0  0  0  0  0  0  0  0  0  0\n    4.7967   -0.7081    2.1078 C   0  0  0  0  0  0  0  0  0  0  0  0\n    3.5261   -0.5128    1.6132 C   0  0  0  0  0  0  0  0  0  0  0  0\n    2.3513   -0.9161    2.1222 N   0  0  0  0  0  0  0  0  0  0  0  0\n    1.3850   -0.4884    1.3121 C   0  0  0  0  0  0  0  0  0  0  0  0\n   -0.3656   -0.4415    1.5740 S   0  0  0  0  0  0  0  0  0  0  0  0\n   -0.6255    1.1820    2.0132 O   0  0  0  0  0  0  0  0  0  0  0  0\n   -0.5945   -1.3180    3.1294 C   0  0  0  0  0  0  0  0  0  0  0  0\n   -2.0085   -1.4938    3.4620 C   0  0  0  0  0  0  0  0  0  0  0  0\n   -2.5905   -2.7184    3.4637 N   0  0  0  0  0  0  0  0  0  0  0  0\n   -3.8460   -2.9378    3.8579 C   0  0  0  0  0  0  0  0  0  0  0  0\n   -4.6643   -1.8414    4.0456 C   0  0  0  0  0  0  0  0  0  0  0  0\n   -6.0484   -2.1254    4.5224 C   0  0  0  0  0  0  0  0  0  0  0  0\n   -4.0346   -0.6259    4.2858 C   0  0  0  0  0  0  0  0  0  0  0  0\n   -4.8275    0.4385    4.6931 O   0  0  0  0  0  0  0  0  0  0  0  0\n   -5.7593    1.0704    3.8429 C   0  0  0  0  0  0  0  0  0  0  0  0\n   -2.6593   -0.4948    4.1321 C   0  0  0  0  0  0  0  0  0  0  0  0\n   -2.0185    0.6377    4.8038 C   0  0  0  0  0  0  0  0  0  0  0  0\n    1.9844   -0.2519    0.1202 N   0  0  0  0  0  0  0  0  0  0  0  0\n    3.3283   -0.3532    0.2614 C   0  0  0  0  0  0  0  0  0  0  0  0\n    4.3951   -0.3911   -0.6271 C   0  0  0  0  0  0  0  0  0  0  0  0\n    8.3703   -0.0907   -0.3817 H   0  0  0  0  0  0  0  0  0  0  0  0\n    8.7031   -1.7271   -1.0587 H   0  0  0  0  0  0  0  0  0  0  0  0\n    8.0404   -1.6082    0.5794 H   0  0  0  0  0  0  0  0  0  0  0  0\n    6.8301   -0.3313    1.6284 H   0  0  0  0  0  0  0  0  0  0  0  0\n    4.9206   -0.8021    3.1683 H   0  0  0  0  0  0  0  0  0  0  0  0\n    2.1676   -1.5008    2.9793 H   0  0  0  0  0  0  0  0  0  0  0  0\n    0.0340   -0.8985    3.9229 H   0  0  0  0  0  0  0  0  0  0  0  0\n   -0.1672   -2.3333    2.9221 H   0  0  0  0  0  0  0  0  0  0  0  0\n   -4.0899   -3.9271    4.2490 H   0  0  0  0  0  0  0  0  0  0  0  0\n   -6.3039   -1.3258    5.2377 H   0  0  0  0  0  0  0  0  0  0  0  0\n   -6.6900   -2.1189    3.6090 H   0  0  0  0  0  0  0  0  0  0  0  0\n   -6.1058   -3.1091    5.0533 H   0  0  0  0  0  0  0  0  0  0  0  0\n   -6.4642    1.6546    4.4672 H   0  0  0  0  0  0  0  0  0  0  0  0\n   -5.2808    1.7835    3.1405 H   0  0  0  0  0  0  0  0  0  0  0  0\n   -6.3859    0.3456    3.2742 H   0  0  0  0  0  0  0  0  0  0  0  0\n   -2.3397    1.6333    4.4162 H   0  0  0  0  0  0  0  0  0  0  0  0\n   -2.3608    0.6229    5.8702 H   0  0  0  0  0  0  0  0  0  0  0  0\n   -0.9279    0.6235    4.8368 H   0  0  0  0  0  0  0  0  0  0  0  0\n    4.2047   -0.5411   -1.6905 H   0  0  0  0  0  0  0  0  0  0  0  0\n  1  2  1  0\n  2  3  1  0\n  3  4  2  0\n  4  5  1  0\n  5  6  2  0\n  6  7  1  0\n  7  8  1  0\n  9  8  1  6\n  9 10  1  0\n  9 11  1  0\n 11 12  1  0\n 12 13  2  0\n 13 14  1  0\n 14 15  2  0\n 15 16  1  0\n 15 17  1  0\n 17 18  1  0\n 18 19  1  0\n 17 20  2  0\n 20 21  1  0\n  8 22  2  0\n 22 23  1  0\n 23 24  2  0\n 24  3  1  0\n 23  6  1  0\n 20 12  1  0\n  1 25  1  0\n  1 26  1  0\n  1 27  1  0\n  4 28  1  0\n  5 29  1  0\n  7 30  1  0\n 11 31  1  0\n 11 32  1  0\n 14 33  1  0\n 16 34  1  0\n 16 35  1  0\n 16 36  1  0\n 19 37  1  0\n 19 38  1  0\n 19 39  1  0\n 21 40  1  0\n 21 41  1  0\n 21 42  1  0\n 24 43  1  0\nM  CHG  2   9   1  10  -1\nM  END\n','sdf');
+		viewer_1.setStyle({'model': 2},{'stick':{'color':'red'}});
+		
+		viewer_1.zoomTo();
+		viewer_1.render();
+		
+		document.getElementById("print_selected_radio").innerHTML="done!"
+})
+
+
+$3Dmolpromise.done(function() {
+	
+	$("#buttons_ui").change(function() {
+		
+		if ($("#radio-0").is(":checked")){
+		
+			document.getElementById("print_selected_radio").innerHTML="rendering all models"
+			
+			viewer_1.setStyle({'model':0},{'stick': {'hidden':false}});
+			viewer_1.setStyle({'model':0},{'stick': {'color':'yellow'}});
+			
+			viewer_1.setStyle({'model':1},{'stick': {'hidden':false}});
+			viewer_1.setStyle({'model':1},{'stick': {'color':'white'}});
+			
+			
+			viewer_1.setStyle({'model':2},{'stick': {'hidden':false}});
+			viewer_1.setStyle({'model':2},{'stick': {'color':'red'}});
+			
+			//viewer_1.render(callback);
+			viewer_1.render();
+			
+			
+		} else if ($("#radio-1").is(":checked")){
+		
+			document.getElementById("print_selected_radio").innerHTML="rendering model 0"
+			
+			viewer_1.setStyle({'model':0},{'stick': {'hidden':false}});
+			viewer_1.setStyle({'model':0},{'stick': {'color':'yellow'}});
+			
+			viewer_1.setStyle({'model':1},{'stick': {'hidden':true}});
+			//viewer_1.setStyle({'model':1},{'stick': {'color':'white'}});
+			
+			
+			viewer_1.setStyle({'model':2},{'stick': {'hidden':true}});
+			//viewer_1.setStyle({'model':2},{'stick': {'color':'red'}});
+			
+			//viewer_1.render(callback);
+			viewer_1.render();
+			
+			
+		} else if ($("#radio-2").is(":checked")) {
+			
+			document.getElementById("print_selected_radio").innerHTML="rendering model 1"
+			
+			viewer_1.setStyle({'model':0},{'stick': {'hidden':true}});
+			//viewer_1.setStyle({'model':0},{'stick': {'color':'yellow'}});
+			
+			viewer_1.setStyle({'model':1},{'stick': {'hidden':false}});
+			viewer_1.setStyle({'model':1},{'stick': {'color':'white'}});
+			
+			viewer_1.setStyle({'model':2},{'stick': {'hidden':true}});
+			//viewer_1.setStyle({'model':2},{'stick': {'color':'red'}});
+			
+			//viewer_1.render(callback);
+			viewer_1.render();
+			
+			
+			
+		} else if ($("#radio-3").is(":checked")){
+			
+			document.getElementById("print_selected_radio").innerHTML="rendering model 2"
+			
+			viewer_1.setStyle({'model':0},{'stick': {'hidden':true}});
+			//viewer_1.setStyle({'model':0},{'stick': {'color':'yellow'}});
+			
+			viewer_1.setStyle({'model':1},{'stick': {'hidden':true}});
+			//viewer_1.setStyle({'model':1},{'stick': {'color':'white'}});
+			
+			
+			viewer_1.setStyle({'model':2},{'stick': {'hidden':false}});
+			viewer_1.setStyle({'model':2},{'stick': {'color':'red'}});
+			
+			//viewer_1.render(callback);
+			viewer_1.render();
+			
+			
+		} else if ($("#radio-4").is(":checked")){
+		
+			document.getElementById("print_selected_radio").innerHTML="hiding model 2"
+			
+			viewer_1.setStyle({'model':0},{'stick': {'hidden':false}});
+			viewer_1.setStyle({'model':0},{'stick': {'color':'yellow'}});
+			
+			
+			viewer_1.setStyle({'model':1},{'stick': {'hidden':false}});
+			viewer_1.setStyle({'model':1},{'stick': {'color':'white'}});
+			
+			
+			viewer_1.setStyle({'model':2},{'stick': {'hidden':true}});
+			//viewer_1.setStyle({'model':2},{'stick': {'color':'red'}});
+			
+			//viewer_1.render(callback);
+			viewer_1.render();
+			
+		}
+		
+	
+
+	});
+
+});
+
+</script>
+
+
+</body>
+
+
+</html>
