@@ -4,7 +4,7 @@ Derived from Greg Landrum's code by Malitha Humayun Kabir
 As a part of GSoC 2017
 Project : RDKit - 3Dmol.js integration
 Mentors: Paul Czodrowski and Greg Landrum
-Date: 28th June 2017
+Date: 11th July 2017
 """
 
 import py3Dmol
