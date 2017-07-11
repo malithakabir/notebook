@@ -137,7 +137,7 @@ def addMolToViewForScrolling(moldict, view, uid,
         view.setStyle({},{globals()['Style_'+uid]:{'colorscheme': color}})
     else:
         #update global style and use that
-        globals()['myGlobalStyle_'+uid] = drawAs
+        globals()['Style_'+uid] = drawAs
         view.setStyle({},{globals()['Style_'+uid]:{'colorscheme': color}})
     
     #
