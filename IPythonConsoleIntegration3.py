@@ -138,7 +138,7 @@ def addMolToViewForScrolling(moldict, view, uid,
     else:
         #update global style and use that
         globals()['myGlobalStyle_'+uid] = drawAs
-        view.setStyle({},{globals()['myGlobalStyle_'+uid]:{'colorscheme': color}})
+        view.setStyle({},{globals()['Style_'+uid]:{'colorscheme': color}})
     
     #
     # This is exception for surface
