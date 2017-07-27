@@ -91,7 +91,7 @@ def update3D(model_id):
             
             if mol.GetNumConformers()>1:
                 
-                allConfIds = range(mol.GetNumConformers())
+                allConfIds = list(range(mol.GetNumConformers()))
                 globals()['confId_'+uid].options = allConfIds
                 
                 if globals()['selectAllConfs_'+uid].value:
@@ -365,7 +365,7 @@ def ShowConformers3D(uid = None,
     globals()['molId_'+uid] = Dropdown(description='', options=keys,value=keys[0])
     globals()['selectMultiMols_'+uid] = Checkbox(description='selectMultiMols', value=False)
     globals()['selectAllMols_'+uid] = Checkbox(description='selectAllMols', value=False)
-    globals()['confId_'+uid] = Dropdown(description='', options=range(9), value=0)
+    globals()['confId_'+uid] = Dropdown(description='', options=list(range(9)), value=0)
     globals()['selectMultiConfs_'+uid] = Checkbox(description='selectMultiConfs', value=False)
     globals()['selectAllConfs_'+uid] = Checkbox(description='selectAllConfs', value=False)
     
