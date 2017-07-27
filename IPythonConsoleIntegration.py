@@ -1,11 +1,10 @@
 
 """RDKit Conformer Browser
-Derived from Greg Landrum's code by Malitha Humayun Kabir
-As a part of GSoC 2017
+Derived by Malitha Humayun Kabir from Greg Landrum's code as a part of GSoC 2017
 Project : RDKit - 3Dmol.js integration
 Mentors: Paul Czodrowski and Greg Landrum
 Acknowledgement: Peter Gedeck's suggestions helped to improve many lines of codes
-Date: 25th July 2017
+Date: 28th July 2017
 Email# malitha12345@gmail.com
 """
 
@@ -17,73 +16,10 @@ from ipywidgets import Layout, Label, Button, Box, HBox, VBox
 from ipywidgets import Dropdown, SelectMultiple, IntSlider, HTML, Checkbox, Button, Text
 from IPython.display import display
 import time
-from collections import namedtuple
 
 
-## Ligand Extract
+##### Visualization
 
-ExtractResult = namedtuple('ExtractResult',('match','rest'))
-def ExtractMolAtomsMatchingQuery(mol,func, confId,sanitize, includeAttachedHs):
-    """ func should take an atom index """
-    
-    match = [x for x in range(mol.GetNumAtoms()) if func(x)]
-    
-    if includeAttachedHs:
-        # bring over H atoms attached to the atoms matching the query (if necessary)
-        for aid in match:
-            for nbr in mol.GetAtomWithIdx(aid).GetNeighbors():
-                if nbr.GetAtomicNum()==1 and nbr.GetIdx() not in match:
-                    match.append(nbr.GetIdx())
-                    
-    ##### This chunk clones the input molecule and deletes atoms###
-    res2 = Chem.RWMol(mol)
-    for i in sorted(match, reverse=True):
-        res2.RemoveAtom(i)
-    if sanitize:
-        Chem.SanitizeMol(res2)
-    #### Creating new molecule...
-    res = Chem.RWMol()
-    
-    # start with all atoms and their coordinates:
-    # Should probably also handle multiple conformers
-    oconf = mol.GetConformer(confId)
-    nconf = Chem.Conformer(len(match))
-    nconf.SetId(oconf.GetId())
-    old_new_map={}
-    for i,aid in enumerate(match):
-        res.AddAtom(mol.GetAtomWithIdx(aid))
-        nconf.SetAtomPosition(i,oconf.GetAtomPosition(aid))
-        old_new_map[aid] = i
-    res.AddConformer(nconf)
-    
-    # bonds:
-    for i,aid in enumerate(match):
-        for nbr in mol.GetAtomWithIdx(aid).GetNeighbors():
-            if nbr.GetIdx() not in old_new_map:
-                continue
-            bnd = mol.GetBondBetweenAtoms(nbr.GetIdx(),aid)
-            if aid != bnd.GetBeginAtomIdx():
-                continue
-            res.AddBond(old_new_map[aid],old_new_map[nbr.GetIdx()],bnd.GetBondType())
-    if sanitize:
-        Chem.SanitizeMol(res)
-    return ExtractResult(res.GetMol(), res2.GetMol())
-    
-def ExtractMolFragment(mol, ResName, confId=-1,sanitize=False, includeAttachedHs=True):
-    " see ExtractMolAtomsMatchingQuery() for kwargs "
-    ids=list()
-    for Idx in range(mol.GetNumAtoms()-1):
-        atom=mol.GetAtomWithIdx(Idx)
-        if atom.GetPDBResidueInfo().GetResidueName() == ResName:
-            ids.append(atom.GetIdx())
-    return ExtractMolAtomsMatchingQuery(mol, lambda x,y = ids : x in y, confId,sanitize, includeAttachedHs)
-    
-    
-    
-    
-    
-    ##### Visualization
-    
 BGCOLORS_3D = ('0x000000', '0xeeeeee', '0xffffff')
 
 PROP_RDKIT = tuple(sorted(prop for prop, _ in Descriptors._descList))
@@ -98,7 +34,8 @@ COLOR_SCHEME_3D=('default', 'greenCarbon', 'cyanCarbon', 'magentaCarbon',
                  'shapely', 'nucleic', 'chain', 'chainHetatm', 'prop')
 
 
-# I think this function is no longer requred
+# I think this function is no longer required
+# User should be able to supply appropriate input and notebooks are there to help
 def ProcessMolContainingObj(mol):
     """This function checks whether the object type fits the requirements for rendering.
     If the oject doesn't have necessary attributes, it takes action to include that.
@@ -154,7 +91,7 @@ def update3D(model_id):
             
             if mol.GetNumConformers()>1:
                 
-                allConfIds = list(range(mol.GetNumConformers()))
+                allConfIds = range(mol.GetNumConformers())
                 globals()['confId_'+uid].options = allConfIds
                 
                 if globals()['selectAllConfs_'+uid].value:
@@ -279,7 +216,7 @@ def update3D(model_id):
                 pass
                 
         
-        # To do : Add protein in viewer
+        # Add protein in viewer
         try:
             pVisibility = globals()['proteinVisible_'+uid].value
             
@@ -389,7 +326,6 @@ def ShowConformers3D(uid = None,
     if uid is None:
         uid=str(time.time()).replace('.','')
     
-    # print uid
     # Required global objects
     globals()['rdkit_mol_selected_'+uid] = set()
     globals()['rdkit_conf_selected_'+uid] = set()
@@ -407,7 +343,7 @@ def ShowConformers3D(uid = None,
     
     wgListBox.append(Box([Label(value='uid'), HTML(description='', value=str(uid))], layout=itemLayout))
     
-    # To do : Add protein
+    # Add protein
     if protein is not None:
         #print 'adding protein'
         globals()['protein_'+uid] = protein
@@ -429,7 +365,7 @@ def ShowConformers3D(uid = None,
     globals()['molId_'+uid] = Dropdown(description='', options=keys,value=keys[0])
     globals()['selectMultiMols_'+uid] = Checkbox(description='selectMultiMols', value=False)
     globals()['selectAllMols_'+uid] = Checkbox(description='selectAllMols', value=False)
-    globals()['confId_'+uid] = Dropdown(description='', options=list(range(9)), value=0)
+    globals()['confId_'+uid] = Dropdown(description='', options=range(9), value=0)
     globals()['selectMultiConfs_'+uid] = Checkbox(description='selectMultiConfs', value=False)
     globals()['selectAllConfs_'+uid] = Checkbox(description='selectAllConfs', value=False)
     
