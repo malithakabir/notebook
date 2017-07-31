@@ -58,7 +58,7 @@ def ExtractMolAtomsMatchingQuery(mol,func, confId,sanitize, includeAttachedHs):
         Chem.SanitizeMol(res)
     return ExtractResult(res.GetMol(), res2.GetMol())
     
-def ExtractMolFragment(mol, ResName, confId=-1,sanitize=False, includeAttachedHs=True):
+def ExtractMolFragment(mol, ResName, confId=-1,sanitize=True, includeAttachedHs=True):
     " see ExtractMolAtomsMatchingQuery() for kwargs "
     ids=list()
     for Idx in range(mol.GetNumAtoms()-1):
