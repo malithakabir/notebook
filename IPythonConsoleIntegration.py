@@ -409,27 +409,19 @@ def ShowConformers3D(uid = None,
     globals()['mol_views'][molViewState.uid] = molViewState
     
     uid = molViewState.uid
-    keys=molViewState.moldict.keys()
-    
-    wgListBox=list()
-    itemLayout=Layout(display='flex', flex_flow='row', justify_content='space-between')
-    
     
     # Required global objects
     globals()['rdkit_3dviewer_start_button_clicked_'+uid] = False
     globals()['drawAs_no_wg_'+uid] = drawAs
     globals()['pStyle_no_wg_'+uid] = pStyle
     
-    
-    if 'ipy_wgs' not in globals():
-        globals()['ipy_wgs'] = dict()
-    
+    keys=molViewState.moldict.keys()
     
     # Right hand panel (widgets)
     
-    itemLayout=Layout(display='flex_box', flex_flow='row', justify_content='space-between')
-    
     wgListBox=list()
+    
+    itemLayout=Layout(display='flex', flex_flow='row', justify_content='space-between')
     
     wgListBox.append(Box([Label(value='uid'), HTML(description='', value=str(uid))], layout=itemLayout))
     
@@ -438,10 +430,6 @@ def ShowConformers3D(uid = None,
         #print 'adding protein'
         globals()['protein_'+uid] = protein
     
-    
-    # molecules and conformers
-    globals()['moldict_'+uid] = moldict
-    keys=list(globals()['moldict_'+uid].keys())
     
     # Users are expected to have keys int. 
     # If keys are not str then still the rendering is possible but ChangeActiveLigand() wont't work currently
